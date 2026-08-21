@@ -1,0 +1,12 @@
+2026-08-21T10:42:00Z SW1 INFO Gi0/2 VLAN=10 LINK_UP
+2026-08-21T10:42:00Z SW1 INFO Gi0/3 VLAN=10 LINK_UP
+2026-08-21T10:42:01Z PC1 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:01Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:02Z SW1 CRITICAL Gi0/2 VLAN_CHANGE old=10 new=20
+2026-08-21T10:42:02Z SW1 ERROR access_port_misconfiguration interface=Gi0/2 expected_vlan=10 actual_vlan=20
+2026-08-21T10:42:03Z PC1 WARN arp_resolution_timeout destination=10.0.0.1 vlan=20
+2026-08-21T10:42:03Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:04Z PC1 WARN arp_resolution_timeout destination=10.0.0.1 vlan=20
+2026-08-21T10:42:04Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:05Z PC1 WARN connectivity_timeout destination=10.0.0.1 vlan=20
+2026-08-21T10:42:05Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success

@@ -1,0 +1,13 @@
+2026-08-21T10:42:00Z SW1 INFO Gi0/1 LINK_UP
+2026-08-21T10:42:00Z R1 INFO Gi0/0 LINK_UP
+2026-08-21T10:42:01Z PC1 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:01Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:01Z R1 INFO ROUTE_TEST destination=10.0.0.20 result=forwarded
+2026-08-21T10:42:02Z R1 CRITICAL ROUTE_CHANGE destination=10.0.0.20 next_hop=UNREACHABLE reason=invalid_forwarding_entry
+2026-08-21T10:42:02Z R1 ERROR forwarding_failure destination=10.0.0.20 action=drop
+2026-08-21T10:42:03Z PC1 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:03Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:03Z PC1 WARN connectivity_timeout destination=10.0.0.20
+2026-08-21T10:42:03Z PC2 WARN connectivity_timeout destination=10.0.0.20
+2026-08-21T10:42:04Z PC1 WARN connectivity_timeout destination=10.0.0.20
+2026-08-21T10:42:04Z PC2 WARN connectivity_timeout destination=10.0.0.20

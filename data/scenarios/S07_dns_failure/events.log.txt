@@ -1,0 +1,15 @@
+2026-08-21T10:42:00Z SERVER INFO DNS_SERVICE_UP port=53
+2026-08-21T10:42:01Z PC1 INFO DNS_QUERY name=server.example.local result=success
+2026-08-21T10:42:01Z PC2 INFO DNS_QUERY name=server.example.local result=success
+2026-08-21T10:42:01Z PC1 INFO ICMP_TEST destination=10.0.0.20 result=success
+2026-08-21T10:42:01Z PC2 INFO ICMP_TEST destination=10.0.0.20 result=success
+2026-08-21T10:42:02Z SERVER CRITICAL DNS_SERVICE_DOWN port=53
+2026-08-21T10:42:02Z SERVER ERROR dns_service_unavailable reason=service_failure
+2026-08-21T10:42:03Z PC1 WARN DNS_TIMEOUT name=server.example.local
+2026-08-21T10:42:03Z PC2 WARN DNS_TIMEOUT name=server.example.local
+2026-08-21T10:42:04Z PC1 INFO ICMP_TEST destination=10.0.0.20 result=success
+2026-08-21T10:42:04Z PC2 INFO ICMP_TEST destination=10.0.0.20 result=success
+2026-08-21T10:42:05Z PC1 WARN DNS_TIMEOUT name=server.example.local
+2026-08-21T10:42:05Z PC2 WARN DNS_TIMEOUT name=server.example.local
+2026-08-21T10:42:06Z PC1 INFO ICMP_TEST destination=10.0.0.20 result=success
+2026-08-21T10:42:06Z PC2 INFO ICMP_TEST destination=10.0.0.20 result=success

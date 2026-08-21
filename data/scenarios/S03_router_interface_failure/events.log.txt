@@ -1,0 +1,13 @@
+2026-08-21T10:42:00Z R1 INFO Gi0/0 LINK_UP
+2026-08-21T10:42:00Z SW1 INFO Gi0/1 LINK_UP
+2026-08-21T10:42:01Z PC1 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:01Z PC2 INFO ICMP_TEST gateway=10.0.0.1 result=success
+2026-08-21T10:42:02Z R1 CRITICAL Gi0/0 LINK_DOWN peer=SW1
+2026-08-21T10:42:02Z R1 ERROR gateway_interface_failure_detected interface=Gi0/0
+2026-08-21T10:42:02Z SW1 WARN Gi0/1 LINK_DOWN peer=R1
+2026-08-21T10:42:03Z PC1 WARN connectivity_timeout destination=10.0.0.1
+2026-08-21T10:42:03Z PC2 WARN connectivity_timeout destination=10.0.0.1
+2026-08-21T10:42:04Z PC1 WARN connectivity_timeout destination=10.0.0.1
+2026-08-21T10:42:04Z PC2 WARN connectivity_timeout destination=10.0.0.1
+2026-08-21T10:42:05Z PC1 WARN connectivity_timeout destination=10.0.0.1
+2026-08-21T10:42:05Z PC2 WARN connectivity_timeout destination=10.0.0.1
