@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetForensics — Deterministic Network Incident Reconstruction</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="app-title">NetForensics</h1>
+                    <p class="app-subtitle">Deterministic Network Incident Reconstruction Engine</p>
+                </div>
+            </div>
+            <div class="status-pill">
+                <span class="pulse-dot"></span>
+                <span>Evidence-driven • Deterministic • Auditable</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Scenario Selector Bar -->
+        <section class="card selector-card">
+            <div class="selector-container">
+                <label for="scenario-select" class="selector-label">Select Incident Scenario Dataset:</label>
+                <select id="scenario-select" class="scenario-dropdown">
+                    <option value="" disabled selected>Loading scenarios...</option>
+                </select>
+                <button id="investigate-btn" class="btn btn-primary">
+                    <span id="btn-text">INVESTIGATE</span>
+                    <span id="btn-spinner" class="spinner hidden"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Error Banner -->
+        <div id="error-banner" class="banner banner-error hidden">
+            <span id="error-message"></span>
+        </div>
+
+        <!-- Investigation Dashboard Results -->
+        <div id="dashboard-results" class="results-grid hidden">
+            
+            <!-- Summary Stats Grid -->
+            <section class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-scenario-id">-</div>
+                    <div class="stat-label">Scenario ID</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-events-count">0</div>
+                    <div class="stat-label">Normalized Events</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-correlations-count">0</div>
+                    <div class="stat-label">Correlations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-candidates-count">0</div>
+                    <div class="stat-label">Candidate Hypotheses</div>
+                </div>
+                <div class="stat-card stat-confidence">
+                    <div class="stat-value" id="stat-confidence-band">-</div>
+                    <div class="stat-label">Diagnostic Confidence</div>
+                </div>
+            </section>
+
+            <!-- Spotlight Primary Hypothesis -->
+            <section class="card primary-hypothesis-card">
+                <div class="section-badge">MOST PROBABLE ROOT CAUSE</div>
+                <div class="primary-header">
+                    <h2 id="hyp-title" class="primary-title">Run investigation to view result</h2>
+                    <div class="primary-meta">
+                        <span id="hyp-type" class="badge badge-type">Type: -</span>
+                        <span id="hyp-target" class="badge badge-target">Target: -</span>
+                        <span id="hyp-score" class="badge badge-score">Score: 0.00</span>
+                        <span id="hyp-confidence" class="badge badge-conf">Confidence: -</span>
+                    </div>
+                </div>
+
+                <div class="explanation-box">
+                    <h3>Auditable Explanation:</h3>
+                    <pre id="hyp-explanation" class="explanation-text"></pre>
+                </div>
+            </section>
+
+            <!-- Grid Layout for Score Breakdown & Validation -->
+            <div class="two-column-grid">
+                <!-- Score Breakdown -->
+                <section class="card">
+                    <h3 class="card-title">Phase 4 Deterministic Score Breakdown</h3>
+                    <div class="score-breakdown-list">
+                        <div class="score-item">
+                            <div class="score-info">
+                                <span>Evidence Support (Weight 30%)</span>
+                                <span id="sb-support-val">0.00</span>
+                            </div>
+                            <div class="progress-bar"><div id="sb-support-bar" class="progress-fill fill-blue" style="width: 0%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-info">
+                                <span>Temporal Consistency (Weight 15%)</span>
+                                <span id="sb-temporal-val">0.00</span>
+                            </div>
+                            <div class="progress-bar"><div id="sb-temporal-bar" class="progress-fill fill-indigo" style="width: 0%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-info">
+                                <span>Topology Consistency (Weight 20%)</span>
+                                <span id="sb-topology-val">0.00</span>
+                            </div>
+                            <div class="progress-bar"><div id="sb-topology-bar" class="progress-fill fill-purple" style="width: 0%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-info">
+                                <span>Propagation Consistency (Weight 25%)</span>
+                                <span id="sb-propagation-val">0.00</span>
+                            </div>
+                            <div class="progress-bar"><div id="sb-propagation-bar" class="progress-fill fill-cyan" style="width: 0%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-info">
+                                <span>Specificity (Weight 10%)</span>
+                                <span id="sb-specificity-val">0.00</span>
+                            </div>
+                            <div class="progress-bar"><div id="sb-specificity-bar" class="progress-fill fill-teal" style="width: 0%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-info penalty-label">
+                                <span>Contradiction Penalty (Deduction)</span>
+                                <span id="sb-penalty-val">-0.00</span>
+                            </div>
+                            <div class="progress-bar"><div id="sb-penalty-bar" class="progress-fill fill-red" style="width: 0%"></div></div>
+                        </div>
+                        <div class="score-item score-final">
+                            <div class="score-info">
+                                <strong>Final Clamped Score</strong>
+                                <strong id="sb-final-val">0.0000</strong>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Phase 5 Diagnostic Validation -->
+                <section class="card">
+                    <h3 class="card-title">Phase 5 Validation & Investigation Guidance</h3>
+                    <div class="validation-grid">
+                        <div class="val-metric">
+                            <span class="val-label">Coverage Score</span>
+                            <span class="val-value" id="val-coverage">0.00</span>
+                        </div>
+                        <div class="val-metric">
+                            <span class="val-label">Source Diversity</span>
+                            <span class="val-value" id="val-diversity">0.00</span>
+                        </div>
+                        <div class="val-metric">
+                            <span class="val-label">Evidence Completeness</span>
+                            <span class="val-value" id="val-completeness">0.00</span>
+                        </div>
+                        <div class="val-metric">
+                            <span class="val-label">Separation Margin</span>
+                            <span class="val-value" id="val-margin">0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="guidance-section">
+                        <h4>Recommended Verification Steps:</h4>
+                        <ol id="rec-steps-list" class="steps-list">
+                            <li>Run investigation to populate recommendations.</li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Impact & Propagation -->
+            <section class="card">
+                <h3 class="card-title">Impact & Topological Propagation</h3>
+                <div class="impact-container">
+                    <div class="impact-column">
+                        <h4 class="impact-title affected-title">Affected Entities:</h4>
+                        <div id="affected-pills" class="pill-cloud"></div>
+                    </div>
+                    <div class="impact-column">
+                        <h4 class="impact-title unaffected-title">Unaffected Entities:</h4>
+                        <div id="unaffected-pills" class="pill-cloud"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Supporting & Contradicting Evidence Cards -->
+            <div class="two-column-grid">
+                <section class="card">
+                    <h3 class="card-title">Supporting Evidence Events</h3>
+                    <div id="supporting-events-list" class="events-card-list"></div>
+                </section>
+
+                <section class="card">
+                    <h3 class="card-title">Contradicting Evidence Events</h3>
+                    <div id="contradicting-events-list" class="events-card-list"></div>
+                </section>
+            </div>
+
+            <!-- Alternative Candidates Table -->
+            <section class="card">
+                <h3 class="card-title">Alternative Ranked Candidates</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Hypothesis Title</th>
+                                <th>Type</th>
+                                <th>Target</th>
+                                <th>Score</th>
+                                <th>Confidence</th>
+                            </tr>
+                        </thead>
+                        <tbody id="candidates-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Chronological Event Timeline -->
+            <section class="card">
+                <h3 class="card-title">Chronological Event Timeline</h3>
+                <div id="timeline-list" class="timeline-container"></div>
+            </section>
+
+            <!-- Forensic Traceability Footer -->
+            <section class="card traceability-card">
+                <h3 class="card-title">Forensic Evidence Traceability Summary</h3>
+                <p class="traceability-desc">Every conclusion is strictly traceable to normalized evidence event IDs without LLM or AI inference.</p>
+                <div class="traceability-ids">
+                    <div><strong>Supporting Event IDs:</strong> <span id="trace-supporting-ids" class="mono-ids">None</span></div>
+                    <div><strong>Contradicting Event IDs:</strong> <span id="trace-contradicting-ids" class="mono-ids">None</span></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>NetForensics Engine • 100% Deterministic • Non-AI Forensic Reconstruction Framework</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
