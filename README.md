@@ -24,11 +24,13 @@ NetForensics/
 ├── backend/
 │   └── app/
 │       ├── ingestion/
-│       └── normalization/
+│       ├── normalization/
+│       └── correlation/
 │
 ├── tests/
 │   ├── test_ingestion.py
-│   └── test_normalization.py
+│   ├── test_normalization.py
+│   └── test_correlation.py
 │
 └── docs/
 ```
@@ -38,4 +40,5 @@ NetForensics/
 - **Ingestion**: Parsers for network topologies, event logs, and PCAP packet captures.
 - **Validation**: Handles missing files, malformed evidence, invalid topology structures, and invalid PCAP input.
 - **Normalization**: Converts heterogeneous evidence sources (event logs, PCAP traffic) and network topologies into standardized internal representations.
+- **Evidence Correlation**: Deterministically correlates normalized evidence using temporal, entity, topology, and network-flow relationships (establishes relationships between records; does not yet determine root cause).
 - **Scenario Support**: Loads structured network incident evidence from scenario datasets.
