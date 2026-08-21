@@ -1,0 +1,17 @@
+{
+  "scenario_id": "S05",
+  "schema_version": "1.0",
+  "incident": "SW1 Gi0/2 VLAN misconfiguration affecting PC1",
+  "failure_time": "2026-08-21T10:42:02Z",
+  "artifacts": [
+    "topology.json",
+    "traffic.pcap",
+    "events.log",
+    "ground_truth.json",
+    "README.md",
+    "schema.md"
+  ],
+  "pcap_packet_count": 24,
+  "pcap_format": "classic libpcap",
+  "synthetic": true
+}

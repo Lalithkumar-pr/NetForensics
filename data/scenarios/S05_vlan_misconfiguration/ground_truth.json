@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S05",
+  "root_cause": {
+    "type": "vlan_misconfiguration",
+    "source_device": "SW1",
+    "destination_device": "PC1",
+    "source_interface": "Gi0/2",
+    "destination_interface": "eth0",
+    "failure_time": "2026-08-21T10:42:02Z",
+    "expected_vlan": 10,
+    "actual_vlan": 20
+  },
+  "affected_devices": [
+    "PC1"
+  ],
+  "unaffected_devices": [
+    "R1",
+    "SW1",
+    "SW2",
+    "PC2",
+    "SERVER"
+  ],
+  "propagation": [
+    "SW1 Gi0/2 changes from VLAN 10 to VLAN 20",
+    "PC1 cannot resolve gateway R1",
+    "PC1 loses required network connectivity",
+    "PC2 remains operational"
+  ],
+  "evaluation_target": "The reconstruction engine should identify the SW1 Gi0/2 VLAN misconfiguration as the most probable root cause rather than a physical link failure."
+}
