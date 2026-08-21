@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S06",
+  "root_cause": {
+    "type": "arp_resolution_failure",
+    "source_device": "PC1",
+    "destination_device": "R1",
+    "source_interface": "eth0",
+    "destination_interface": "Gi0/0",
+    "failure_time": "2026-08-21T10:42:02Z"
+  },
+  "affected_devices": [
+    "PC1"
+  ],
+  "unaffected_devices": [
+    "R1",
+    "SW1",
+    "SW2",
+    "PC2",
+    "SERVER"
+  ],
+  "propagation": [
+    "PC1 repeatedly broadcasts ARP requests for gateway 10.0.0.1",
+    "PC1 does not receive the gateway ARP resolution response",
+    "PC1 cannot resolve the gateway MAC address",
+    "PC1 gateway communication fails while PC2 remains operational"
+  ],
+  "evaluation_target": "The reconstruction engine should identify PC1 ARP resolution failure as the most probable root cause and distinguish it from a physical link failure."
+}
