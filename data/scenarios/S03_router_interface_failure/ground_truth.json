@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S03",
+  "root_cause": {
+    "type": "router_interface_failure",
+    "source_device": "R1",
+    "destination_device": "SW1",
+    "source_interface": "Gi0/0",
+    "destination_interface": "Gi0/1",
+    "failure_time": "2026-08-21T10:42:02Z"
+  },
+  "affected_devices": [
+    "PC1",
+    "PC2"
+  ],
+  "unaffected_devices": [
+    "SW1",
+    "SW2",
+    "SERVER"
+  ],
+  "propagation": [
+    "R1 Gi0/0 router interface fails",
+    "SW1 loses its upstream router connection",
+    "PC1 loses gateway connectivity",
+    "PC2 loses gateway connectivity while downstream switching infrastructure remains present"
+  ],
+  "evaluation_target": "The reconstruction engine should identify R1 Gi0/0 router interface failure toward SW1 as the most probable root cause."
+}
