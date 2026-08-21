@@ -1,39 +1,83 @@
 {
-  "scenario": "S01_switch_uplink_failure",
-  "version": "1.0",
-  "nodes": [
+  "schema_version": "1.0",
+  "scenario_id": "S01",
+  "description": "Switch uplink failure between SW1 and gateway router R1",
+  "devices": [
     {
-      "id": "SW-CORE-01",
-      "type": "switch",
-      "role": "core",
-      "management_ip": "10.0.0.1"
+      "id": "R1",
+      "type": "router",
+      "ip": "10.0.0.1"
     },
     {
-      "id": "SW-ACCESS-01",
+      "id": "SW1",
       "type": "switch",
-      "role": "access",
       "management_ip": "10.0.0.2"
     },
     {
-      "id": "HOST-01",
-      "type": "end_device",
-      "role": "workstation",
-      "ip": "10.0.1.50"
+      "id": "SW2",
+      "type": "switch",
+      "management_ip": "10.0.0.3"
+    },
+    {
+      "id": "PC1",
+      "type": "host",
+      "ip": "10.0.0.11",
+      "gateway": "10.0.0.1"
+    },
+    {
+      "id": "PC2",
+      "type": "host",
+      "ip": "10.0.0.12",
+      "gateway": "10.0.0.1"
+    },
+    {
+      "id": "SERVER",
+      "type": "server",
+      "ip": "10.0.0.20",
+      "gateway": "10.0.0.1"
     }
   ],
   "links": [
     {
-      "id": "link-core-access",
-      "source": "SW-CORE-01:GigabitEthernet1/0/1",
-      "target": "SW-ACCESS-01:GigabitEthernet0/1",
-      "bandwidth": "10Gbps",
-      "status": "down"
+      "id": "L1",
+      "a": "SW1",
+      "b": "R1",
+      "a_interface": "Gi0/1",
+      "b_interface": "Gi0/0",
+      "status_before": "up",
+      "status_after": "down",
+      "failure_time": "2026-08-21T10:42:02Z"
     },
     {
-      "id": "link-access-host",
-      "source": "SW-ACCESS-01:GigabitEthernet0/2",
-      "target": "HOST-01:eth0",
-      "bandwidth": "1Gbps",
+      "id": "L2",
+      "a": "PC1",
+      "b": "SW1",
+      "a_interface": "eth0",
+      "b_interface": "Gi0/2",
+      "status": "up"
+    },
+    {
+      "id": "L3",
+      "a": "PC2",
+      "b": "SW1",
+      "a_interface": "eth0",
+      "b_interface": "Gi0/3",
+      "status": "up"
+    },
+    {
+      "id": "L4",
+      "a": "SW1",
+      "b": "SW2",
+      "a_interface": "Gi0/4",
+      "b_interface": "Gi0/1",
+      "status": "up"
+    },
+    {
+      "id": "L5",
+      "a": "SW2",
+      "b": "SERVER",
+      "a_interface": "Gi0/2",
+      "b_interface": "eth0",
       "status": "up"
     }
   ]

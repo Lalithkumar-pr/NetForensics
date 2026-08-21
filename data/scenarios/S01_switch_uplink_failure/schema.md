@@ -1,23 +1,33 @@
-# Data Schemas for Scenario S01
+# Synthetic Network Evidence Schema v1.0
 
-## 1. `topology.json`
-Represents network devices, interfaces, and active links.
-- `nodes`: List of objects (`id`, `type`, `hostname`, `ip`).
-- `links`: List of objects (`id`, `source`, `target`, `status`).
+## topology.json
+Contains:
+- `scenario_id`
+- `devices[]`
+- `links[]`
+- device IDs, types, IPs and interface/link relationships
 
-## 2. `events.log`
-Log format: `<Timestamp> <Host> <Facility/Severity> <Message>`
-Example:
-`2026-08-21T09:00:00Z SW-ACCESS-01 LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down`
+## events.log
+One event per line:
+`timestamp device severity event/details`
 
-## 3. `traffic.pcap`
-Standard PCAP packet capture file containing network traffic traces recorded during the scenario window.
+Timestamps use UTC ISO-8601 format.
 
-## 4. `ground_truth.json`
-Incidents annotations used for evaluating reconstruction accuracy.
-- `scenario_id`: Unique identifier for the scenario.
-- `root_cause`: Key component or link failure cause.
-- `timeline`: Array of event objects with `timestamp`, `event_type`, and `impact`.
+## traffic.pcap
+Valid libpcap packet capture.
+For S01 it contains:
+- normal ICMP request/reply traffic before failure
+- post-failure ICMP requests with no replies
 
-## 5. `MANIFEST.json`
-Metadata listing all files, versioning, format specifications, and file integrity details.
+## ground_truth.json
+Contains:
+- injected root cause
+- affected/unaffected devices
+- failure timestamp
+- expected propagation
+- evaluation target
+
+## Naming rules
+- Device IDs: `R1`, `SW1`, `SW2`, `PC1`, `PC2`, `SERVER`
+- IP addresses: `10.0.0.0/24`
+- Timestamps: UTC ISO-8601 with `Z`

@@ -1,16 +1,17 @@
 {
-  "scenario_id": "S01_switch_uplink_failure",
-  "name": "Switch Uplink Failure Scenario",
-  "version": "1.0.0",
-  "created_at": "2026-08-21T09:00:00Z",
-  "description": "Network forensics scenario dataset for a switch uplink loss incident.",
-  "files": [
-    "README.md",
-    "schema.md",
+  "scenario_id": "S01",
+  "schema_version": "1.0",
+  "incident": "SW1-R1 uplink failure",
+  "failure_time": "2026-08-21T10:42:02Z",
+  "artifacts": [
     "topology.json",
-    "events.log",
     "traffic.pcap",
+    "events.log",
     "ground_truth.json",
-    "MANIFEST.json"
-  ]
+    "README.md",
+    "schema.md"
+  ],
+  "pcap_packet_count": 22,
+  "pcap_format": "classic libpcap",
+  "synthetic": true
 }

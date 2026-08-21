@@ -1,37 +1,27 @@
 {
-  "scenario_id": "S01_switch_uplink_failure",
-  "title": "Access Switch Uplink Failure",
-  "severity": "CRITICAL",
+  "schema_version": "1.0",
+  "scenario_id": "S01",
   "root_cause": {
-    "device": "SW-ACCESS-01",
-    "interface": "GigabitEthernet0/1",
-    "component": "Uplink Transceiver / Cable",
-    "description": "Physical link down on uplink interface GigabitEthernet0/1 connecting SW-ACCESS-01 to core switch SW-CORE-01."
+    "type": "link_failure",
+    "source_device": "SW1",
+    "destination_device": "R1",
+    "source_interface": "Gi0/1",
+    "destination_interface": "Gi0/0",
+    "failure_time": "2026-08-21T10:42:02Z"
   },
-  "timeline": [
-    {
-      "timestamp": "2026-08-21T09:01:15.120Z",
-      "event": "Interface GigabitEthernet0/1 state changed to DOWN",
-      "source": "SW-ACCESS-01"
-    },
-    {
-      "timestamp": "2026-08-21T09:01:15.500Z",
-      "event": "Interface GigabitEthernet1/0/1 state changed to DOWN",
-      "source": "SW-CORE-01"
-    },
-    {
-      "timestamp": "2026-08-21T09:01:16.000Z",
-      "event": "OSPF neighbor 10.0.0.2 adjacency state dropped to DOWN",
-      "source": "SW-CORE-01"
-    },
-    {
-      "timestamp": "2026-08-21T09:01:20.000Z",
-      "event": "Host ICMP destination unreachable",
-      "source": "HOST-01"
-    }
+  "affected_devices": [
+    "PC1",
+    "PC2"
   ],
-  "impacted_nodes": [
-    "SW-ACCESS-01",
-    "HOST-01"
-  ]
+  "unaffected_devices": [
+    "SW1",
+    "SW2",
+    "SERVER"
+  ],
+  "propagation": [
+    "SW1-R1 uplink fails",
+    "PC1 loses gateway connectivity",
+    "PC2 loses gateway connectivity"
+  ],
+  "evaluation_target": "The reconstruction engine should identify SW1-R1 uplink failure as the most probable root cause."
 }
