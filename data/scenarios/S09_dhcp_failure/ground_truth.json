@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S09",
+  "root_cause": {
+    "type": "service_failure",
+    "source_device": "R1",
+    "service": "DHCP",
+    "source_port": 67,
+    "failure_time": "2026-08-21T10:42:02Z"
+  },
+  "affected_devices": [
+    "PC1"
+  ],
+  "unaffected_devices": [
+    "R1",
+    "SW1",
+    "SW2",
+    "PC2",
+    "SERVER"
+  ],
+  "propagation": [
+    "R1 DHCP service becomes unavailable",
+    "PC1 DHCP discovery attempts receive no response",
+    "PC1 cannot obtain or renew dynamic addressing",
+    "PC2 retains an existing lease and continues IP connectivity"
+  ],
+  "evaluation_target": "The reconstruction engine should identify DHCP service failure on R1 as the most probable root cause and distinguish it from an access-link or general network failure."
+}
