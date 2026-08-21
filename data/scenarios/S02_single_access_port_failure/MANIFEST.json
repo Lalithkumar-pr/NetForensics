@@ -1,0 +1,17 @@
+{
+  "scenario_id": "S02",
+  "schema_version": "1.0",
+  "incident": "SW1-PC1 access-port failure",
+  "failure_time": "2026-08-21T10:42:02Z",
+  "artifacts": [
+    "topology.json",
+    "traffic.pcap",
+    "events.log",
+    "ground_truth.json",
+    "README.md",
+    "schema.md"
+  ],
+  "pcap_packet_count": 35,
+  "pcap_format": "classic libpcap",
+  "synthetic": true
+}

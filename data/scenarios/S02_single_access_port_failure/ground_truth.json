@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S02",
+  "root_cause": {
+    "type": "access_port_failure",
+    "source_device": "SW1",
+    "destination_device": "PC1",
+    "source_interface": "Gi0/2",
+    "destination_interface": "eth0",
+    "failure_time": "2026-08-21T10:42:02Z"
+  },
+  "affected_devices": [
+    "PC1"
+  ],
+  "unaffected_devices": [
+    "R1",
+    "SW1",
+    "SW2",
+    "PC2",
+    "SERVER"
+  ],
+  "propagation": [
+    "SW1-PC1 access link fails",
+    "PC1 loses link connectivity",
+    "PC1 loses gateway connectivity while PC2 remains operational"
+  ],
+  "evaluation_target": "The reconstruction engine should identify SW1 Gi0/2 access-port failure to PC1 as the most probable root cause."
+}
