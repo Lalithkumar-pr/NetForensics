@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S08",
+  "description": "Degraded SW1-SW2 link with packet loss and retransmissions; physical link remains up.",
+  "devices": [
+    {
+      "id": "R1",
+      "type": "router",
+      "ip": "10.0.0.1"
+    },
+    {
+      "id": "SW1",
+      "type": "switch",
+      "management_ip": "10.0.0.2"
+    },
+    {
+      "id": "SW2",
+      "type": "switch",
+      "management_ip": "10.0.0.3"
+    },
+    {
+      "id": "PC1",
+      "type": "host",
+      "ip": "10.0.0.11",
+      "gateway": "10.0.0.1"
+    },
+    {
+      "id": "PC2",
+      "type": "host",
+      "ip": "10.0.0.12",
+      "gateway": "10.0.0.1"
+    },
+    {
+      "id": "SERVER",
+      "type": "server",
+      "ip": "10.0.0.20",
+      "gateway": "10.0.0.1"
+    }
+  ],
+  "links": [
+    {
+      "id": "L1",
+      "a": "SW1",
+      "b": "R1",
+      "a_interface": "Gi0/1",
+      "b_interface": "Gi0/0",
+      "status": "up"
+    },
+    {
+      "id": "L2",
+      "a": "PC1",
+      "b": "SW1",
+      "a_interface": "eth0",
+      "b_interface": "Gi0/2",
+      "status": "up"
+    },
+    {
+      "id": "L3",
+      "a": "PC2",
+      "b": "SW1",
+      "a_interface": "eth0",
+      "b_interface": "Gi0/3",
+      "status": "up"
+    },
+    {
+      "id": "L4",
+      "a": "SW1",
+      "b": "SW2",
+      "a_interface": "Gi0/4",
+      "b_interface": "Gi0/1",
+      "status": "up",
+      "health": "degraded",
+      "packet_loss_percent": 35,
+      "crc_errors": 1842,
+      "input_errors": 1917,
+      "late_collisions": 12,
+      "degradation_start": "2026-08-21T10:42:02Z"
+    },
+    {
+      "id": "L5",
+      "a": "SW2",
+      "b": "SERVER",
+      "a_interface": "Gi0/2",
+      "b_interface": "eth0",
+      "status": "up"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S08",
+  "root_cause": {
+    "type": "degraded_link_packet_loss",
+    "source_device": "SW1",
+    "destination_device": "SW2",
+    "source_interface": "Gi0/4",
+    "destination_interface": "Gi0/1",
+    "failure_time": "2026-08-21T10:42:02Z",
+    "link_status": "up",
+    "packet_loss_percent": 35,
+    "crc_errors": 1842,
+    "input_errors": 1917
+  },
+  "affected_devices": [
+    "PC1"
+  ],
+  "unaffected_devices": [
+    "R1",
+    "SW1",
+    "SW2",
+    "PC2",
+    "SERVER"
+  ],
+  "propagation": [
+    "SW1-SW2 link remains physically up but develops high CRC/input error rates",
+    "Packets traversing the degraded link are intermittently lost",
+    "PC1 experiences ICMP packet loss and TCP retransmissions",
+    "PC2 remains operational as corroborating unaffected traffic"
+  ],
+  "evaluation_target": "The reconstruction engine should identify the SW1-SW2 degraded link as the most probable root cause and distinguish packet loss from a physical link-down event."
+}
