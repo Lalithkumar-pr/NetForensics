@@ -1,0 +1,17 @@
+{
+  "scenario_id": "S06",
+  "schema_version": "1.0",
+  "incident": "PC1 ARP resolution failure for gateway R1",
+  "failure_time": "2026-08-21T10:42:02Z",
+  "artifacts": [
+    "topology.json",
+    "traffic.pcap",
+    "events.log",
+    "ground_truth.json",
+    "README.md",
+    "schema.md"
+  ],
+  "pcap_packet_count": 26,
+  "pcap_format": "classic libpcap",
+  "synthetic": true
+}
