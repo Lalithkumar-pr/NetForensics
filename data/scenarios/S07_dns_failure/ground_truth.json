@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "S07",
+  "root_cause": {
+    "type": "service_failure",
+    "source_device": "SERVER",
+    "service": "DNS",
+    "source_port": 53,
+    "failure_time": "2026-08-21T10:42:02Z"
+  },
+  "affected_devices": [
+    "PC1",
+    "PC2"
+  ],
+  "unaffected_devices": [
+    "R1",
+    "SW1",
+    "SW2",
+    "SERVER"
+  ],
+  "propagation": [
+    "SERVER DNS service becomes unavailable",
+    "PC1 and PC2 hostname resolution fails",
+    "direct IP connectivity from PC1 and PC2 to SERVER remains successful"
+  ],
+  "evaluation_target": "The reconstruction engine should identify SERVER DNS service failure as the most probable root cause while distinguishing it from a physical connectivity failure."
+}
