@@ -1,0 +1,40 @@
+{
+  "scenario": "S01_switch_uplink_failure",
+  "version": "1.0",
+  "nodes": [
+    {
+      "id": "SW-CORE-01",
+      "type": "switch",
+      "role": "core",
+      "management_ip": "10.0.0.1"
+    },
+    {
+      "id": "SW-ACCESS-01",
+      "type": "switch",
+      "role": "access",
+      "management_ip": "10.0.0.2"
+    },
+    {
+      "id": "HOST-01",
+      "type": "end_device",
+      "role": "workstation",
+      "ip": "10.0.1.50"
+    }
+  ],
+  "links": [
+    {
+      "id": "link-core-access",
+      "source": "SW-CORE-01:GigabitEthernet1/0/1",
+      "target": "SW-ACCESS-01:GigabitEthernet0/1",
+      "bandwidth": "10Gbps",
+      "status": "down"
+    },
+    {
+      "id": "link-access-host",
+      "source": "SW-ACCESS-01:GigabitEthernet0/2",
+      "target": "HOST-01:eth0",
+      "bandwidth": "1Gbps",
+      "status": "up"
+    }
+  ]
+}

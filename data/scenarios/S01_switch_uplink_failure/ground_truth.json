@@ -1,0 +1,37 @@
+{
+  "scenario_id": "S01_switch_uplink_failure",
+  "title": "Access Switch Uplink Failure",
+  "severity": "CRITICAL",
+  "root_cause": {
+    "device": "SW-ACCESS-01",
+    "interface": "GigabitEthernet0/1",
+    "component": "Uplink Transceiver / Cable",
+    "description": "Physical link down on uplink interface GigabitEthernet0/1 connecting SW-ACCESS-01 to core switch SW-CORE-01."
+  },
+  "timeline": [
+    {
+      "timestamp": "2026-08-21T09:01:15.120Z",
+      "event": "Interface GigabitEthernet0/1 state changed to DOWN",
+      "source": "SW-ACCESS-01"
+    },
+    {
+      "timestamp": "2026-08-21T09:01:15.500Z",
+      "event": "Interface GigabitEthernet1/0/1 state changed to DOWN",
+      "source": "SW-CORE-01"
+    },
+    {
+      "timestamp": "2026-08-21T09:01:16.000Z",
+      "event": "OSPF neighbor 10.0.0.2 adjacency state dropped to DOWN",
+      "source": "SW-CORE-01"
+    },
+    {
+      "timestamp": "2026-08-21T09:01:20.000Z",
+      "event": "Host ICMP destination unreachable",
+      "source": "HOST-01"
+    }
+  ],
+  "impacted_nodes": [
+    "SW-ACCESS-01",
+    "HOST-01"
+  ]
+}
