@@ -20,6 +20,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache/
 
 # Virtual Environments
 venv/
@@ -36,6 +37,6 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Logs & Temporary Files
-*.log
+# Temporary Files
 *.tmp
+

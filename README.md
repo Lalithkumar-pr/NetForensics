@@ -21,11 +21,9 @@ NetForensics/
 │           ├── schema.md
 │           └── MANIFEST.json
 │
-├── src/
-│   ├── ingestion/
-│   ├── correlation/
-│   ├── reconstruction/
-│   └── visualization/
+├── backend/
+│   └── app/
+│       └── ingestion/
 │
 ├── tests/
 │
@@ -34,7 +32,6 @@ NetForensics/
 
 ## Features
 
-- **Ingestion**: Parsers for network topologies, syslog/event logs, and PCAP packet captures.
-- **Correlation**: Cross-correlates multi-source network signals to detect anomalies.
-- **Reconstruction**: Reconstructs incident timelines and identifies root causes.
-- **Visualization**: Visualizes topology state changes and packet flows during network incidents.
+- **Ingestion**: Parsers for network topologies, event logs, and PCAP packet captures.
+- **Validation**: Handles missing files, malformed evidence, invalid topology structures, and invalid PCAP input.
+- **Scenario Support**: Loads structured network incident evidence from scenario datasets.
